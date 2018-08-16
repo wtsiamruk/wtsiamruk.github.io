@@ -1,5 +1,4 @@
 <?xml version="1.0"?>
-<!--suppress ALL -->
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>JBake</title>
@@ -7,14 +6,14 @@
     <atom:link href="http://wtsiamruk.com/feed.xml" rel="self" type="application/rss+xml" />
     <description>JBake Bootstrap Template</description>
     <language>en-gb</language>
-    <pubDate>Thu, 16 Aug 2018 22:10:30 +0300</pubDate>
-    <lastBuildDate>Thu, 16 Aug 2018 22:10:30 +0300</lastBuildDate>
+    <pubDate>Thu, 16 Aug 2018 22:17:13 +0300</pubDate>
+    <lastBuildDate>Thu, 16 Aug 2018 22:17:13 +0300</lastBuildDate>
 
     <item>
       <title>tl;dr</title>
-      <link>http://wtsiamruk.com/blog/2018/first-post.html</link>
-      <pubDate>Wed, 24 Jul 2013 00:00:00 +0300</pubDate>
-      <guid isPermaLink="false">blog/2018/first-post.html</guid>
+      <link>http://wtsiamruk.com/blog/2018/hello-world.html</link>
+      <pubDate>Thu, 16 Aug 2018 00:00:00 +0300</pubDate>
+      <guid isPermaLink="false">blog/2018/hello-world.html</guid>
       <description>&amp;lt;h1&amp;gt;tl;dr&amp;lt;/h1&amp;gt; 
 &amp;lt;ul&amp;gt; 
  &amp;lt;li&amp;gt;&amp;lt;a href=&amp;quot;http://wtsiamruk.com&amp;quot;&amp;gt;http://wtsiamru.com&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt; 
