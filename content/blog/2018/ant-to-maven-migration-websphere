@@ -1,0 +1,51 @@
+title=Migrate Legacy Ant Project with EJB 2 to Maven Project
+date=2018-08-16
+type=post
+tags=blog, websphere, maven, buildtool
+status=draft
+~~~~~~
+
+#Migrate Legacy Ant Project with EJB 2 to Maven Project
+
+Не так давно мне было поручено задание мигрировать довольно большой старый проект с Ant скриптов на Maven.
+Само приложение написано довольно давно, имеет не малую кодовую базу, и запускается на [IBM Websphere Traditional](https://en.wikipedia.org/wiki/IBM_WebSphere_Application_Server#Version_8.5.5)
+Звучит довольно просто на первый взгяд. Но мне пришлось немного повозиться, даже не смотря на то что для одной из проблем я нашел решение, но оно было довольно устаревшим...в любом случае, давайте обо всем по порядку.
+
+Вот список проблем с которым мне предстояло разобраться:
+1. Вопрос с проприретарными библиотеками
+2. Большая кодовая база написанная на EJB2(для работы на сервере требуется сериализация в рабочие классы)
+3. Классическая задача для работы билда на билд сервере и на локальных машинах, со своей спецификой для каждого.
+
+##Вопрос с проприретарными библиотеками
+
+Тут все довольно просто, всего-то и нужно что иметь какой либо менеджер зависимостей, будь то [Nexus](https://www.sonatype.com/nexus-repository-oss), и его платная версия, либо же [Artifactory](https://jfrog.com/artifactory/). В нашем конкретном случае, уже был запущен и сконфигурирован Nexus OSS, поэтому выбор естественно пал на него.
+
+Nexus это конечно замечательно, не его еще нужно подключить! Давайте сделаем это!
+
+```
+<--! parent pom.xml -->
+<repositories>
+    <repository>
+        <id>nexus</id>
+        <url>https://com.company.url/repo/public</url>
+    </repository>
+    <repository>
+        <id>central</id>
+        <url>https://repo.maven.apache.org/maven2/</url>
+    </repository>
+</repositories>
+<pluginRepositories>
+    <pluginRepository>
+        <id>nexus</id>
+        <url>https://com.company.url/repo/public</url>
+    </pluginRepository>
+    <pluginRepository>
+        <id>central</id>
+        <url>https://repo.maven.apache.org/maven2/</url>
+    </pluginRepository>
+</pluginRepositories>
+```
+
+Было выбрано решение с двумя репозиториями а не ```<mirror/>```, в силу специфики фаерволов :)
+
+Таким образом решается вопрос с загрузкой сторонних библиотек, все что требуется, это загрузить ее в Nexus, и затем добавить в свой ```pom.xml``` и вуаля, ваш проект теперь имеет доступ к сторонней библиотеке без волокиты по поводу подключения бибилиотек через IDE, либо же используя [```install:install-file```](http://maven.apache.org/plugins/maven-install-plugin/install-file-mojo.html).
