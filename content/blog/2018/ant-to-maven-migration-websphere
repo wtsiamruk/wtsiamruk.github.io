@@ -24,7 +24,7 @@ status=draft
 
 Nexus это конечно замечательно, не его еще нужно подключить! Давайте сделаем это!
 
-```
+```xml
 <--! parent pom.xml -->
 <repositories>
     <repository>
